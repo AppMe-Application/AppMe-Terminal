@@ -1,0 +1,5 @@
+#!/support/busybox sh
+
+#get rid of package installation for now
+#/support/installPackages gnuroot_patch sudo dropbear
+touch /support/.gnuroot_patch_passed

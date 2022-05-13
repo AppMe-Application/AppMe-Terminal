@@ -1,0 +1,548 @@
+<?xml version='1.0' encoding='utf-8'?>
+<manifest
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:installLocation="preferExternal"  
+    package="com.appme.story">
+	
+    <!-- akses penuh Internet. -->
+    <uses-permission android:name="android.permission.INTERNET"/>
+   
+    <!-- lihat status jaringan. -->
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+
+    <!-- lihat status Wi-Fi. -->
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
+    
+    <!-- baca konten kartu SD Anda -->
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+
+    <!-- mengubah atau menghapus konten kartu SD Anda -->
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+
+    <!-- ACCESS_SUPERUSER -->
+    <uses-permission android:name="android.permission.ACCESS_SUPERUSER"/>
+
+    <!-- cegah telepon tidur. -->
+    <uses-permission android:name="android.permission.WAKE_LOCK"/>
+
+
+    <supports-screens
+        android:anyDensity="true"
+        android:smallScreens="true"
+        android:normalScreens="true"
+        android:largeScreens="true"
+        android:resizeable="true"
+        android:xlargeScreens="true"/>
+
+    <uses-feature
+        android:name="android.hardware.touchscreen"
+        android:required="false"/>
+
+    <uses-feature
+        android:name="android.hardware.microphone"
+        android:required="false"/>
+    
+    <permission
+        android:name="com.appme.story.permission.RUN_SCRIPT"
+        android:label="@string/permission_run_script"
+        android:description="@string/permission_desc_run_script"
+        android:permissionGroup="android.permission-group.SYSTEM_TOOLS"
+        android:protectionLevel="dangerous"/>
+
+    <permission
+        android:name="com.appme.story.permission.APPEND_TO_PATH"
+        android:label="@string/permission_append_to_path"
+        android:description="@string/permission_desc_append_to_path"
+        android:permissionGroup="android.permission-group.SYSTEM_TOOLS"
+        android:protectionLevel="dangerous"/>
+
+    <permission
+        android:name="com.appme.story.permission.PREPEND_TO_PATH"
+        android:label="@string/permission_prepend_to_path"
+        android:description="@string/permission_desc_prepend_to_path"
+        android:permissionGroup="android.permission-group.SYSTEM_TOOLS"
+        android:protectionLevel="dangerous"/>
+	
+    <application
+        android:name=".AppController"
+        android:allowBackup="false"
+        android:icon="@mipmap/ic_launcher"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme"
+        android:largeHeap="true"
+		android:hardwareAccelerated="true"
+        android:resizeableActivity="false"
+        tools:replace="android:icon, android:label, android:theme, android:allowBackup">
+		<activity
+            android:name=".SplashActivity"
+            android:label="@string/app_name"
+            android:theme="@style/AppTheme.Splash"
+            android:launchMode="singleTask"
+            android:configChanges="keyboard|keyboardHidden|orientation"
+            tools:replace="android:label, android:name">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
+        
+		<activity
+            android:name=".application.TerminalActivity"
+            android:theme="@style/AppTheme.Application"
+            android:launchMode="singleTask"
+            android:configChanges="keyboard|keyboardHidden|orientation"
+            android:windowSoftInputMode="adjustResize|stateAlwaysVisible">
+            <intent-filter>
+
+                <action android:name="android.intent.action.MAIN"/>
+
+                <category android:name="android.intent.category.DEFAULT"/>
+
+                <category android:name="android.intent.category.MULTIWINDOW_LAUNCHER"/>
+
+            </intent-filter>
+        </activity>
+
+        <activity-alias
+            android:name=".application.TerminalInternal"
+            android:targetActivity=".application.TerminalActivity"
+            android:exported="false">
+            <intent-filter>
+
+                <action android:name="com.appme.story.private.OPEN_NEW_WINDOW"/>
+
+                <category android:name="android.intent.category.DEFAULT"/>
+
+            </intent-filter>
+            <intent-filter>
+
+                <action android:name="com.appme.story.private.SWITCH_WINDOW"/>
+
+                <category android:name="android.intent.category.DEFAULT"/>
+
+            </intent-filter>
+        </activity-alias>
+        <activity
+            android:name=".application.RemoteInterface"
+            android:excludeFromRecents="true">
+            <intent-filter>
+
+                <action android:name="com.appme.story.OPEN_NEW_WINDOW"/>
+
+                <category android:name="android.intent.category.DEFAULT"/>
+
+            </intent-filter>
+        </activity>
+
+        <activity-alias
+            android:name=".application.TerminalHere"
+            android:label="@string/activity_term_here_title"
+            android:targetActivity=".application.RemoteInterface"
+            android:exported="true">
+
+            <intent-filter>
+
+                <action android:name="android.intent.action.SEND"/>
+
+                <data android:mimeType="*/*"/>
+
+                <category android:name="android.intent.category.DEFAULT"/>
+
+            </intent-filter>
+
+        </activity-alias>
+
+        <activity
+            android:name=".application.RunScript"
+            android:excludeFromRecents="true"
+            android:permission="com.appme.story.permission.RUN_SCRIPT">
+
+            <intent-filter>
+
+                <action android:name="com.appme.story.RUN_SCRIPT"/>
+
+                <category android:name="android.intent.category.DEFAULT"/>
+
+            </intent-filter>
+
+        </activity>
+        <activity
+            android:name=".application.RunShortcut"
+            android:excludeFromRecents="true">
+
+            <intent-filter>
+
+                <action android:name="com.appme.story.RUN_SHORTCUT"/>
+
+                <category android:name="android.intent.category.DEFAULT"/>
+
+            </intent-filter>
+
+        </activity>
+
+        <activity
+            android:name=".application.TerminalDebian"
+            android:launchMode="singleTask"
+            android:configChanges="keyboard|keyboardHidden|orientation"
+            android:windowSoftInputMode="adjustResize|stateAlwaysVisible">
+
+        </activity>
+
+        <activity-alias
+            android:name="com.appme.story.application.TerminalDebianInternal"
+            android:targetActivity="com.appme.story.application.TerminalDebian"
+            android:exported="false">
+
+            <intent-filter>
+
+                <action android:name="com.appme.story.private.gnurootdebian.OPEN_NEW_WINDOW"/>
+
+                <category android:name="android.intent.category.DEFAULT"/>
+
+            </intent-filter>
+
+            <intent-filter>
+
+                <action android:name="com.appme.story.private.gnurootdebian.SWITCH_WINDOW"/>
+
+                <category android:name="android.intent.category.DEFAULT"/>
+
+            </intent-filter>
+
+        </activity-alias>
+
+        <activity
+            android:name=".application.DebianRemoteInterface"
+            android:excludeFromRecents="true">
+
+            <intent-filter>
+
+                <action android:name="com.appme.story.DEBIAN_OPEN_NEW_WINDOW"/>
+
+                <category android:name="android.intent.category.DEFAULT"/>
+
+            </intent-filter>
+
+        </activity>
+
+        <activity-alias
+            android:name="com.appme.story.application.DebianTerminalHere"
+            android:label="@string/activity_term_here_title"
+            android:targetActivity=".application.DebianRemoteInterface"
+            android:exported="true">
+
+            <intent-filter>
+
+                <action android:name="android.intent.action.SEND"/>
+
+                <data android:mimeType="*/*"/>
+
+                <category android:name="android.intent.category.DEFAULT"/>
+
+            </intent-filter>
+
+        </activity-alias>
+
+        <activity
+            android:name=".application.DebianRunScript"
+            android:excludeFromRecents="true"
+            android:permission="com.appme.story.permission.DEBIAN_RUN_SCRIPT">
+
+            <intent-filter>
+
+                <action android:name="com.appme.story.DEBIAN_RUN_SCRIPT"/>
+
+                <category android:name="android.intent.category.DEFAULT"/>
+
+            </intent-filter>
+
+        </activity>
+
+        <activity
+            android:name=".application.DebianRunShortcut"
+            android:excludeFromRecents="true">
+
+            <intent-filter>
+
+                <action android:name="com.appme.story.DEBIAN_RUN_SHORTCUT"/>
+
+                <category android:name="android.intent.category.DEFAULT"/>
+
+            </intent-filter>
+
+        </activity>
+        
+        <activity
+            android:name=".application.TerminalPreferences"
+            android:label="@string/terminal_preferences"
+            android:theme="@style/AppTheme"/>
+
+        <activity
+            android:label="@string/activity_shortcut_create"
+            android:name="com.appme.story.application.shortcuts.AddShortcut"
+            android:launchMode="singleTop"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar"
+            android:configChanges="orientation|keyboard|keyboardHidden">
+
+            <intent-filter>
+
+                <action android:name="android.intent.action.MAIN"/>
+
+            </intent-filter>
+
+            <intent-filter>
+
+                <action android:name="android.intent.action.CREATE_SHORTCUT"/>
+
+            </intent-filter>
+
+            <intent-filter>
+
+                <category android:name="android.intent.category.DEFAULT"/>
+
+                <data android:mimeType="text/*"/>
+
+            </intent-filter>
+
+        </activity>
+
+        <activity
+            android:name="com.appme.story.application.shortcuts.FSNavigator"
+            android:label="@string/addshortcut_button_find_command"
+            android:launchMode="singleTop"
+            android:configChanges="orientation|keyboardHidden"
+            android:exported="true">
+
+            <intent-filter>
+
+                <action android:name="android.intent.action.PICK"/>
+
+                <category android:name="android.intent.category.DEFAULT"/>
+
+            </intent-filter>
+
+            <intent-filter>
+
+                <action android:name="android.intent.action.GET_CONTENT"/>
+
+                <category android:name="android.intent.category.DEFAULT"/>
+
+                <category android:name="android.intent.category.OPENABLE"/>
+
+                <data android:mimeType="*/*"/>
+
+            </intent-filter>
+
+        </activity>
+
+        <activity       
+            android:name="com.appme.story.application.DebianActivity"
+            android:label="@string/app_name"
+            android:launchMode="singleTask"
+            android:configChanges="keyboard|keyboardHidden|orientation">
+            <intent-filter>
+
+                <action android:name="android.intent.action.MAIN"/>
+
+                <category android:name="android.intent.category.DEFAULT"/>
+
+            </intent-filter>
+
+            <intent-filter>
+
+                <action android:name="com.appme.story.LAUNCH_DEBIAN_UPDATE_ERROR"/>
+
+                <category android:name="android.intent.category.DEFAULT"/>
+
+            </intent-filter>
+
+            <intent-filter>
+
+                <action android:name="com.appme.story.LAUNCH_DEBIAN_TERMINAL"/>
+
+                <category android:name="android.intent.category.DEFAULT"/>
+
+            </intent-filter>
+
+            <intent-filter>
+
+                <action android:name="com.appme.story.LAUNCH_DEBIAN_REINSTALL"/>
+
+                <category android:name="android.intent.category.DEFAULT"/>
+
+            </intent-filter>
+
+            <intent-filter>
+
+                <action android:name="com.appme.story.LAUNCH_DEBIAN_TOAST_ALARM"/>
+
+                <category android:name="android.intent.category.DEFAULT"/>
+
+            </intent-filter>
+
+        </activity>
+        
+
+        <activity
+            android:name=".application.UpdateActivity"
+            android:label="@string/app_name"
+            android:theme="@style/AppTheme.Application"
+            android:configChanges="keyboardHidden|orientation|screenSize">
+
+        </activity>
+        <activity
+            android:name=".application.ApplicationCrashHandler"
+            android:screenOrientation="portrait"/>
+
+        <receiver
+            android:name=".receiver.ApplicationLogger"
+            android:enabled="true"
+            android:exported="true"/>
+        
+        <service android:name=".service.TerminalService">
+
+            <intent-filter>
+
+                <action android:name="com.appme.story.action.START_TERM.v1"/>
+
+                <category android:name="android.intent.category.DEFAULT"/>
+
+            </intent-filter>
+
+        </service>
+        <service android:name=".service.DebianDownloaderService"/>
+        <service android:name=".service.DebianService"/>
+        <service android:name=".service.DebianNotificationService">
+            <intent-filter>
+
+                <action android:name="com.appme.story.bVNC_DISCONNECT"/>
+
+                <category android:name="android.intent.category.DEFAULT"/>
+
+            </intent-filter>
+
+        </service>
+        <service
+            android:name=".service.DebianOldService"
+            android:exported="true">
+
+            <intent-filter>
+
+                <action android:name="com.appme.story.LAUNCH_DEBIAN_INSTALL_TAR"/>
+
+                <category android:name="android.intent.category.DEFAULT"/>
+
+                <data android:scheme="content"/>
+
+                <data android:mimeType="application/x-tar"/>
+
+            </intent-filter>
+
+            <intent-filter>
+
+                <action android:name="com.appme.story.INSTALL_TAR"/>
+
+                <category android:name="android.intent.category.DEFAULT"/>
+
+                <data android:scheme="file"/>
+
+                <data android:mimeType="application/x-tar"/>
+
+            </intent-filter>
+
+            <intent-filter>
+
+                <action android:name="com.appme.story.RUN_SCRIPT_STR"/>
+
+                <category android:name="android.intent.category.DEFAULT"/>
+
+            </intent-filter>
+
+            <intent-filter>
+
+                <action android:name="com.appme.story.RUN_XSCRIPT_STR"/>
+
+                <category android:name="android.intent.category.DEFAULT"/>
+
+            </intent-filter>
+
+            <intent-filter>
+
+                <action android:name="com.appme.story.RUN_BLOCKING_SCRIPT_STR"/>
+
+                <category android:name="android.intent.category.DEFAULT"/>
+
+            </intent-filter>
+
+            <intent-filter>
+
+                <action android:name="com.appme.story.INSTALL_PACKAGES"/>
+
+                <category android:name="android.intent.category.DEFAULT"/>
+
+            </intent-filter>
+
+            <intent-filter>
+
+                <action android:name="com.appme.story.CHECK_STATUS"/>
+
+                <category android:name="android.intent.category.DEFAULT"/>
+
+            </intent-filter>
+
+            <intent-filter>
+
+                <action android:name="com.appme.story.CHECK_PREREQ"/>
+
+                <category android:name="android.intent.category.DEFAULT"/>
+
+            </intent-filter>
+
+            <intent-filter>
+
+                <action android:name="com.appme.story.CONNECT_VNC_VIEWER"/>
+
+                <category android:name="android.intent.category.DEFAULT"/>
+
+            </intent-filter>
+
+        </service> 
+        <service android:name=".service.TerminalDebianService">
+
+            <intent-filter>
+
+                <action android:name="com.appme.story.action.START_TERM.v1"/>
+
+                <category android:name="android.intent.category.DEFAULT"/>
+
+            </intent-filter>
+
+        </service>
+
+        <provider
+            android:name="android.support.v4.content.FileProvider"
+            android:authorities="com.appme.story.fileprovider"
+            android:grantUriPermissions="true"
+            android:exported="false">
+
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/paths"/>
+
+        </provider>
+        <meta-data
+            android:name="com.sec.android.support.multiwindow"
+            android:value="true">
+
+        </meta-data>
+		    
+        <meta-data
+            android:name="android.max_aspect"
+            android:value="4.0"/>
+
+    </application>
+
+</manifest>

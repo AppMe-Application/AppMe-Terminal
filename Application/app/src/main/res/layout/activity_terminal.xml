@@ -1,0 +1,351 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	android:orientation="vertical"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	android:id="@+id/root_view">
+
+	<android.support.design.widget.AppBarLayout
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+
+		<android.support.v7.widget.Toolbar
+			android:id="@+id/toolbar"
+			android:layout_width="match_parent"
+			android:layout_height="?attr/actionBarSize"
+			app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
+
+	</android.support.design.widget.AppBarLayout>
+
+	<RelativeLayout
+		android:layout_height="match_parent"
+		android:layout_width="match_parent"
+		android:id="@+id/layout_drawer">
+
+		<android.support.v4.widget.DrawerLayout
+			android:id="@+id/drawer_terminal_layout"
+			android:layout_width="fill_parent"
+			android:layout_height="fill_parent">
+
+			<RelativeLayout
+				android:layout_height="fill_parent"
+				android:layout_width="fill_parent"
+				android:id="@+id/layout_content">
+
+				<LinearLayout
+					android:layout_width="match_parent"
+					android:layout_height="match_parent"
+					android:orientation="vertical"
+					android:layout_alignParentEnd="true"
+					android:layout_alignParentLeft="true"
+					android:layout_alignParentRight="true"
+					android:layout_alignParentStart="true"
+					android:layout_alignParentTop="true">
+
+					<com.appme.story.engine.app.terminal.TermViewFlipper
+						android:id="@+id/view_flipper"
+						android:layout_weight="1"
+						android:layout_width="match_parent"
+						android:background="@android:color/black"
+						android:layout_height="0dp"/>
+
+					<HorizontalScrollView
+						android:id="@+id/view_function_bar"
+						android:visibility="visible"
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content">
+
+						<TableLayout
+							android:id="@+id/view_function_bar_keys"
+							android:layout_width="wrap_content"
+							android:layout_height="wrap_content">
+
+							<TableRow
+								android:layout_width="match_parent"
+								android:layout_height="wrap_content">
+
+								<Button
+									android:id="@+id/button_esc"
+									android:layout_width="wrap_content"
+									android:layout_height="wrap_content"
+									android:minHeight="35sp"
+									android:minWidth="60sp"
+									android:text="Esc"
+									android:background="@color/rowBackground"/>
+
+								<Button
+									android:id="@+id/button_vim_paste"
+									android:layout_width="wrap_content"
+									android:layout_height="wrap_content"
+									android:minHeight="35sp"
+									android:minWidth="60sp"
+									android:text="Paste"
+                                    android:background="@color/rowBackground"/>
+                                
+								<Button
+									android:id="@+id/button_slash"
+									android:layout_width="wrap_content"
+									android:layout_height="wrap_content"
+									android:minHeight="35sp"
+									android:minWidth="60sp"
+									android:text="/"
+                                    android:background="@color/rowBackground"/>
+                                
+								<Button
+									android:id="@+id/button_pipe"
+									android:layout_width="wrap_content"
+									android:layout_height="wrap_content"
+									android:minHeight="35sp"
+									android:minWidth="60sp"
+									android:text="|"
+                                    android:background="@color/rowBackground"/>
+                               
+								<Button
+									android:id="@+id/button_up"
+									android:layout_width="wrap_content"
+									android:layout_height="wrap_content"
+									android:minHeight="35sp"
+									android:minWidth="60sp"
+									android:text="▲"
+                                    android:background="@color/rowBackground"/>
+                                
+								<Button
+									android:id="@+id/button_minus"
+									android:layout_width="wrap_content"
+									android:layout_height="wrap_content"
+									android:minHeight="35sp"
+									android:minWidth="60sp"
+									android:text="-"
+                                    android:background="@color/rowBackground"/>
+                                
+								<Button
+									android:id="@+id/button_asterisk"
+									android:layout_width="wrap_content"
+									android:layout_height="wrap_content"
+									android:minHeight="35sp"
+									android:minWidth="60sp"
+									android:text="*"
+                                    android:background="@color/rowBackground"/>
+                                
+								<Button
+									android:id="@+id/button_backspace"
+									android:layout_width="wrap_content"
+									android:layout_height="wrap_content"
+									android:minHeight="35sp"
+									android:minWidth="60sp"
+									android:text="BS"
+                                    android:background="@color/rowBackground"/>
+                                
+							</TableRow>
+
+							<TableRow
+								android:layout_width="match_parent"
+								android:layout_height="wrap_content">
+
+								<Button
+									android:id="@+id/button_tab"
+									android:layout_width="wrap_content"
+									android:layout_height="wrap_content"
+									android:minHeight="35sp"
+									android:minWidth="60sp"
+									android:text="Tab"
+                                    android:background="@color/rowBackground"/>
+                                
+								<Button
+									android:id="@+id/button_ctrl"
+									android:layout_width="wrap_content"
+									android:layout_height="wrap_content"
+									android:minHeight="35sp"
+									android:minWidth="60sp"
+									android:text="Ctrl"
+                                    android:background="@color/rowBackground"/>
+                                
+								<Button
+									android:id="@+id/button_alt"
+									android:layout_width="wrap_content"
+									android:layout_height="wrap_content"
+									android:minHeight="35sp"
+									android:minWidth="60sp"
+									android:text="Alt"
+                                    android:background="@color/rowBackground"/>
+                                
+								<Button
+									android:id="@+id/button_left"
+									android:layout_width="wrap_content"
+									android:layout_height="wrap_content"
+									android:minHeight="35sp"
+									android:minWidth="60sp"
+									android:text="◀"
+                                    android:background="@color/rowBackground"/>
+                                
+								<Button
+									android:id="@+id/button_down"
+									android:layout_width="wrap_content"
+									android:layout_height="wrap_content"
+									android:minHeight="35sp"
+									android:minWidth="60sp"
+									android:text="▼"
+                                    android:background="@color/rowBackground"/>
+                                
+								<Button
+									android:id="@+id/button_right"
+									android:layout_width="wrap_content"
+									android:layout_height="wrap_content"
+									android:minHeight="35sp"
+									android:minWidth="60sp"
+									android:text="▶"
+                                    android:background="@color/rowBackground"/>
+                                
+								<Button
+									android:id="@+id/button_enter"
+									android:layout_width="wrap_content"
+									android:layout_height="wrap_content"
+									android:minHeight="35sp"
+									android:minWidth="60sp"
+									android:text="Enter"
+                                    android:background="@color/rowBackground"/>
+                                
+								<Button
+									android:id="@+id/button_i"
+									android:layout_width="wrap_content"
+									android:layout_height="wrap_content"
+									android:minHeight="35sp"
+									android:minWidth="60sp"
+									android:text="i"
+                                    android:background="@color/rowBackground"/>
+                                
+								<Button
+									android:id="@+id/button_colon"
+									android:layout_width="wrap_content"
+									android:layout_height="wrap_content"
+									android:minHeight="35sp"
+									android:minWidth="60sp"
+									android:text=":"
+                                    android:background="@color/rowBackground"/>
+                                
+								<Button
+									android:id="@+id/button_equal"
+									android:layout_width="wrap_content"
+									android:layout_height="wrap_content"
+									android:minHeight="35sp"
+									android:minWidth="60sp"
+									android:text="="
+                                    android:background="@color/rowBackground"/>
+                                
+								<Button
+									android:id="@+id/button_vim_yank"
+									android:layout_width="wrap_content"
+									android:layout_height="wrap_content"
+									android:minHeight="35sp"
+									android:minWidth="60sp"
+									android:text="&quot;*yy"
+                                    android:background="@color/rowBackground"/>
+                                
+								<Button
+									android:id="@+id/button_menu_plus"
+									android:layout_width="wrap_content"
+									android:layout_height="wrap_content"
+									android:minHeight="35sp"
+									android:minWidth="60sp"
+									android:text="[＋]"
+                                    android:background="@color/rowBackground"/>
+                                
+								<Button
+									android:id="@+id/button_menu_minus"
+									android:layout_width="wrap_content"
+									android:layout_height="wrap_content"
+									android:minHeight="35sp"
+									android:minWidth="60sp"
+									android:text="[－]"
+                                    android:background="@color/rowBackground"/>
+                                
+								<Button
+									android:id="@+id/button_menu_x"
+									android:layout_width="wrap_content"
+									android:layout_height="wrap_content"
+									android:minHeight="35sp"
+									android:minWidth="60sp"
+									android:text="[×]"
+                                    android:background="@color/rowBackground"/>
+                                
+								<Button
+									android:id="@+id/button_menu_user"
+									android:layout_width="wrap_content"
+									android:layout_height="wrap_content"
+									android:minHeight="35sp"
+									android:minWidth="60sp"
+									android:text="[？]"
+                                    android:background="@color/rowBackground"/>
+                                
+								<Button
+									android:id="@+id/button_menu_quit"
+									android:layout_width="wrap_content"
+									android:layout_height="wrap_content"
+									android:minHeight="35sp"
+									android:minWidth="60sp"
+									android:text="[Q]"
+                                    android:background="@color/rowBackground"/>
+                                
+								<Button
+									android:id="@+id/button_softkeyboard"
+									android:layout_width="wrap_content"
+									android:layout_height="wrap_content"
+									android:minHeight="35sp"
+									android:minWidth="60sp"
+									android:text="◇"
+                                    android:background="@color/rowBackground"/>
+                                
+								<Button
+									android:id="@+id/button_menu"
+									android:layout_width="wrap_content"
+									android:layout_height="wrap_content"
+									android:minHeight="35sp"
+									android:minWidth="60sp"
+									android:text="≡"
+                                    android:background="@color/rowBackground"/>
+                                
+								<Button
+									android:id="@+id/button_menu_hide"
+									android:layout_width="wrap_content"
+									android:layout_height="wrap_content"
+									android:minHeight="35sp"
+									android:minWidth="60sp"
+									android:text="∇"
+                                    android:background="@color/rowBackground"/>
+                                
+							</TableRow>
+
+						</TableLayout>
+
+					</HorizontalScrollView>
+
+				</LinearLayout>
+
+				<com.appme.story.engine.widget.ShellResultView
+					android:id="@+id/shell_result_view"
+					android:layout_width="fill_parent"
+					android:layout_height="fill_parent"
+					android:layout_alignParentEnd="true"
+					android:layout_alignParentLeft="true"
+					android:layout_alignParentRight="true"
+					android:layout_alignParentStart="true"
+					android:layout_alignParentTop="true"/>
+
+			</RelativeLayout>
+
+			<FrameLayout
+				android:id="@+id/navigation_drawer"
+				android:layout_gravity="start"
+				android:background="@color/windowBackground"
+				android:layout_width="fill_parent"
+				android:layout_height="fill_parent"/>
+
+		</android.support.v4.widget.DrawerLayout>
+
+	</RelativeLayout>
+
+</LinearLayout>
+
