@@ -33,7 +33,7 @@
 			android:layout_alignParentRight="true"
 			android:layout_marginRight="@dimen/fab_margin"
 			android:layout_marginTop="@dimen/fab_top_margin"
-			android:src="@drawable/ic_app_download"
+			android:src="@drawable/ic_download"
 			app:rippleColor="@color/md_deep_purple_A100"
 			app:elevation="@dimen/fab_elevation"
 			app:borderWidth="0dp"/>

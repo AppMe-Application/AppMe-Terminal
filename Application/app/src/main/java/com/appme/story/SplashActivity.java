@@ -67,14 +67,14 @@ public class SplashActivity extends AppCompatActivity {
 
     public static void start(Context c) {
         Intent mIntent = new Intent(c, SplashActivity.class);
-        mIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        mIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
         c.startActivity(mIntent);
     }
 
     public static void restart(Context c, String action) {
         Intent mIntent = new Intent(c, SplashActivity.class);
         mIntent.setAction(action);
-        mIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        mIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
         c.startActivity(mIntent);
     }
 
@@ -106,37 +106,25 @@ public class SplashActivity extends AppCompatActivity {
         Analytics.with(this).setDeviceAnalytics();
         String action = getIntent().getAction();        
         if (action != null && action.equals(ACTION_TERMINAL_ACTIVITY)) {
-            Analytics.with(this).setAnalytisTerminal(SplashActivity.this, new Analytics.OnTerminalListener(){
-                    @Override
-                    public void onAndroid() {
-                        
-                        startMainActivity(TerminalActivity.class);
-                    }
-
-                    @Override
-                    public void onDebian() {
-                        
-                        startMainActivity(DebianActivity.class);
-                    }
-                });     
+            setTerminal();
         } 
 
-        Analytics.with(this).setAnalytisTerminal(SplashActivity.this, new Analytics.OnTerminalListener(){
+        setTerminal();
+    }
+
+    public void setTerminal(){
+        Analytics.with(this).setAnalyticsTerminal(SplashActivity.this, new Analytics.OnTerminalListener(){
                 @Override
-                public void onAndroid() {
-                    
+                public void onAndroid() {              
                     startMainActivity(TerminalActivity.class);
                 }
 
                 @Override
-                public void onDebian() {
-                    
+                public void onDebian() {                
                     startMainActivity(DebianActivity.class);
                 }
             });     
     }
-
-
     /**
      * If receive data from other app (it could be file, text from clipboard),
      * You will be handle data and send to {@link MainActivity}

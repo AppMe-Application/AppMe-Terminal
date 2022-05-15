@@ -8,20 +8,21 @@ import java.io.File;
 import java.util.List;
 
 import com.appme.story.AppController;
+import android.widget.Toast;
 
 public class RemoteService {
     public static String TAG = RemoteService.class.getSimpleName();
 
     public static final String BASE = "com.appme.story.process";
     private static final String BASE_ACTION = "com.appme.story.service.ScreenMonitorService.";
-    
+
     public static final String PROCESS_BROADCAST_ACTION = BASE + ".RECEIVE_BROADCAST";
-    public static final String PROCESS_STATUS_KEY = BASE +".STATUS_KEY";
+    public static final String PROCESS_STATUS_KEY = BASE + ".STATUS_KEY";
     public static final String PROCESS_STATUS_MESSAGE = BASE + ".STATUS_MESSAGE";
     public static final String PROCESS_DIR = BASE + ".DIR";
     public static final String EXTRA_FILE_PATH = "FILE_PATH";
     public static final String EXTRA_FILE_NAME = "FILE_PATH";
-    public static final String RECORDING_VIDEO_ID = BASE +".VIDEO_ID";
+    public static final String RECORDING_VIDEO_ID = BASE + ".VIDEO_ID";
     public static final int PROCESS_NOTIFICATION_ID = 1;
 
     public static final String SERVICE_IS_READY = "SERVICE_IS_READY";
@@ -72,8 +73,8 @@ public class RemoteService {
     public static final String KEY_START = BASE_ACTION_SCREEN_STREAM + ".ForegroundService.startStream";
     public static final String KEY_STOP = BASE_ACTION_SCREEN_STREAM + ".ForegroundService.stopStream";
     public static final String KEY_CLOSE = BASE_ACTION_SCREEN_STREAM + ".ForegroundService.closeService";
-    
-    
+
+
     public interface ACTION {
         String START_SERVICE = BASE_ACTION + ".ACTION_START_SERVICE";      
         String STOP_SCREEN_CAPTURE = BASE_ACTION + ".ACTION_STOP_SCREEN_CAPTURE";
@@ -97,8 +98,8 @@ public class RemoteService {
         SCREEN_PLAY,  
         SCREEN_SHOT, 
         SCREEN_RECORD   
-    }
-    
+        }
+
     public static void killAllService(Context context) {
         ActivityManager am = (ActivityManager) context.getSystemService(Context.ACTIVITY_SERVICE);
         List<ActivityManager.RunningAppProcessInfo> runningAppProcesses = am.getRunningAppProcesses();
@@ -122,7 +123,7 @@ public class RemoteService {
         }
         return false;
     }
-    
+
     public static boolean isServiceRunning(Context c, Class<?> serviceClass) {
         ActivityManager manager = (ActivityManager) c.getSystemService(Context.ACTIVITY_SERVICE);
         for (ActivityManager.RunningServiceInfo service : manager.getRunningServices(Integer.MAX_VALUE)) {
@@ -132,6 +133,29 @@ public class RemoteService {
         }
         return false;
     }
-}
 
+    public static void setService(Context c, Class<?> mService) {
+        if (isServiceRunning(c, mService)) {
+            c.stopService(new Intent(c, mService));              
+        }else{
+            c.startService(new Intent(c, mService));              
+        }
+    }
+    
+    public static void setStopService(Context c, Class<?> mService) {
+        if (isServiceRunning(c, mService)) {
+            c.stopService(new Intent(c, mService));              
+        }else{
+            Toast.makeText(c, mService +  " Not Running", Toast.LENGTH_SHORT).show();         
+        }
+    }
+    
+    public static void setTerminalService(Context c, Class<?> mStopService, Class<?> mStartService) {
+        if (isServiceRunning(c, mStopService)) {
+            c.stopService(new Intent(c, mStopService));              
+        }else{
+            c.startService(new Intent(c, mStartService));              
+        }
+    }
+}
 

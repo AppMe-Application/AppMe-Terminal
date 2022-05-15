@@ -93,8 +93,9 @@ import com.appme.story.engine.app.folders.FolderMe;
 import com.appme.story.engine.app.folders.FileMe;
 import com.appme.story.engine.app.utils.KeyboardUtils;
 import com.appme.story.engine.widget.ShellResultView;
+import com.appme.story.receiver.RemoteService;
+import com.appme.story.service.TerminalService;
 import com.appme.story.service.TerminalDebianService;
-
 
 /**
  * A terminal emulator activity.

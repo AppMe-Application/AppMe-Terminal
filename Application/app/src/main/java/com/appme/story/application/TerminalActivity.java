@@ -798,7 +798,7 @@ public class TerminalActivity extends AppCompatActivity implements UpdateCallbac
 		} else if (id == R.id.menu_toggle_soft_keyboard) {
             KeyboardUtils.doToggleSoftKeyboard(TerminalActivity.this);
         } else if (id == R.id.menu_open_debian) {    
-			SplashActivity.restart(this, SplashActivity.ACTION_TERMINAL_ACTIVITY);
+			SplashActivity.restart(this, SplashActivity.ACTION_TERMINAL_ACTIVITY);   
             finish();
             Analytics.with(this).setTerminal(false);
         } else if (id == R.id.menu_reset) {

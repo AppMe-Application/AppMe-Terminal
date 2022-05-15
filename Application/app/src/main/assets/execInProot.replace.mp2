@@ -1,17 +1,25 @@
-#!ROOT_PATH/support/busybox sh
+#!/data/data/com.terminal.story/support/busybox sh
 
-ROOT_PATH/support/busybox clear
+/data/data/com.terminal.story/support/busybox clear
 
-blue='\033[0;34m'; NC='\033[0m';
-echo "" 
-echo -e "${blue}Sponsored by: "
-echo "                                          "
-echo " _____                   _                "
-echo "|_   _| ___  ___  ___  _| | _ _  ___  ___ "
-echo "  | |  | -_||  _|| . || . || | ||   || -_|"
-echo "  |_|  |___||_|  |__,||___||_  ||_|_||___|"
-echo "                           |___|          "
-echo -e "${NC}"
-
+blue='\e[1;34m' 
+green='\e[1;32m' 
+purple='\e[1;35m' 
+cyan='\e[1;36m' 
+red='\e[1;31m' 
+white='\e[1;37m' 
+NC='\e[0;32m'
+ echo "" 
+ echo -e $blue "Terminal Debian : "
+ echo "                                          "
+ echo -e $green "<_______________________________________________>"
+ echo ""
+ echo -e $red " --------------*TERMINAL $white DEBIAN*--------------- "
+ echo ""
+ echo -e $blue "        [ $cyan INSTALL_ $purple DEBUG_ $green PLAYING_ ]       "
+ echo ""
+ echo -e $green "<______________________________________________>"
+ 
+ echo -e  "${NC}"
 #launch PRoot
 PROOT_TMP_DIR=ROOT_PATH/support/ ROOT_PATH/support/proot -r ROOT_PATH/debian -v -1 -p -H -0 -l -L -b /sys -b /dev -b /proc -b /data -b /mnt -b /proc/mounts:/etc/mtab -b /:/host-rootfs -b SDCARD_GNU_PATH/intents:/intents -b SDCARD_GNU_PATH/home:/home -b SDCARD_PATH:/sdcard -b ROOT_PATH/support/:/support -b ROOT_PATH/support/ld.so.preload:/etc/ld.so.preload EXTRA_BINDINGS $@

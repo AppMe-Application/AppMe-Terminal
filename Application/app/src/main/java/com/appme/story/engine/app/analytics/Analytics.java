@@ -99,7 +99,7 @@ public class Analytics {
         }
     }
     
-    public Analytics setAnalytisActivity(OnFirstTimeListener mOnFirstTimeListener) {
+    public Analytics setAnalyticsActivity(OnFirstTimeListener mOnFirstTimeListener) {
         /**** START APP ****/
         boolean isFirstStart = mSharedPreference.getBoolean("firstStart", true);
         if (isFirstStart) {
@@ -117,7 +117,7 @@ public class Analytics {
         return this;
     }
 
-    public Analytics setAnalytisTerminal(Context c, OnTerminalListener mOnTerminalListener) {
+    public Analytics setAnalyticsTerminal(Context c, OnTerminalListener mOnTerminalListener) {
         if (IsTerminal(c)) {
             if (mOnTerminalListener != null) {
                 mOnTerminalListener.onAndroid();
@@ -139,7 +139,7 @@ public class Analytics {
     
     public static boolean IsTerminal(Context context) {
         SharedPreferences sharedPreferences = context.getSharedPreferences(SHARED_PREF_DATA_SET_CHANGED, Context.MODE_PRIVATE);
-        return sharedPreferences.getBoolean(CHANGE_TERMINAL, false);
+        return sharedPreferences.getBoolean(CHANGE_TERMINAL, true);
     }
     
     /*public void checkNetwork(final TextView tv) {

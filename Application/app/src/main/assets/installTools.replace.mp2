@@ -1,0 +1,45 @@
+#!/support/busybox sh
+clear
+#Bashcolor
+blue='\e[1;34m' 
+green='\e[1;32m' 
+purple='\e[1;35m' 
+cyan='\e[1;36m' 
+red='\e[1;31m' 
+white='\e[1;37m' 
+#Update Terminal
+echo -e $green "Update Terminal"
+sleep 1
+apt update
+sleep 1
+
+clear
+#Upgrade Terminal
+echo -e $green "Upgrade Terminal"
+sleep 1
+apt upgrade -y
+sleep 1
+
+clear
+#Install Nano Editor
+echo -e $green "Install Nano Editor"
+sleep 1
+apt install nano -y
+sleep 1
+
+clear
+#Install Git Cli
+echo -e $green "Install Git"
+sleep 1
+apt install git -y
+sleep 1
+
+clear
+#Install Curl
+echo -e $green "Install Curl"
+sleep 1
+apt install curl -y
+sleep 1
+
+exit 
+

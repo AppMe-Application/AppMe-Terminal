@@ -30,23 +30,37 @@ git config --global user.name $USERNAME
  sleep 1
  echo -ne "\033[34m\r[*] Masuk Ke Folder Projects.\e[33m[\033[32m$i\033[33m]\033[0m   ";
  read DIR
+mkdir ~/$DIR
+sleep 1
+
 cd ~/$DIR
 sleep 1
 
 git init
 sleep 1
 
+echo -ne "\033[34m\r[*] Membuat File ReadMe.Tuliskan Deskripsi Disini\e[33m[\033[32m$i\033[33m]\033[0m   ";
+read message
+echo $message > ReadMe2.md
+git commit -m "This File ReadMe.."
+sleep 2
+
 ls 
 sleep 1
 
 echo -ne "\033[34m\r[*]  Add File Yang Mau Di Upload Ke Github.\e[33m[\033[32m$i\033[33m]\033[0m   ";
  read addFile
-git add $addFile
+git add ReadMe2.md $addFile
 sleep 1
 
+echo "This Github Cli Auto Push" > ReadMe-Auto.md
 echo -ne "\033[34m\r[*]  Tulis Deskripsi Mengenai File Or Commit.\e[33m[\033[32m$i\033[33m]\033[0m   ";
  read commitMessage
 git commit -m $commitMessage
+sleep 1
+
+echo -ne "\033[34m\r[*] This Github Status.\e[33m[\033[32m$i\033[33m]\033[0m   ";
+ git status
 sleep 1
 
 echo -ne "\033[34m\r[*]  Repository Yang Mau Di Remote.\e[33m[\033[32m$i\033[33m]\033[0m   ";

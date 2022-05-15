@@ -36,7 +36,7 @@ public class TerminalDebianService extends Service implements TermSession.Finish
     /* Parallels the value of START_STICKY on API Level >= 5 */
     private static final int COMPAT_START_STICKY = 1;
 
-    private static final int RUNNING_NOTIFICATION = 2;
+    private static final int RUNNING_NOTIFICATION = 1;
     private ServiceForegroundCompat compat;
 
     private SessionList mTermSessions;

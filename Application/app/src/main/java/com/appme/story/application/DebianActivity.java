@@ -444,14 +444,11 @@ public class DebianActivity extends AppCompatActivity  {
 
     private void setupFirstHalf() {
         this.errOcc = false;
+        RemoteService.setStopService(DebianActivity.this, TerminalService.class);
+        RemoteService.setStopService(DebianActivity.this, TerminalDebianService.class);
         new Thread() {
             public void run() {
-                if (RemoteService.isServiceRunning(DebianActivity.this, TerminalDebianService.class)) {
-                    stopService(new Intent(DebianActivity.this, TerminalDebianService.class));              
-                }
-                if (RemoteService.isServiceRunning(DebianActivity.this, TerminalService.class)) {                
-                    stopService(new Intent(DebianActivity.this, TerminalService.class));
-                }
+                
                 try {
                     final File debianFile = new File(obbFolder, obbFile);
                     final File obbTemp = new File(obbDownloadFolder, obbFile);
